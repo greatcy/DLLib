@@ -76,7 +76,7 @@ Peer* add_peer_node();
 int del_peer_node(Peer *peer);
 void free_peer_node(Peer *node);
 int cancel_request_list(Peer *node);
-void release_memory_in_peer();
+void release_memory_in_peer();//release all memory in peer module
 void print_peer_data();
 
 #endif

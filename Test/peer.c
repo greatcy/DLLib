@@ -83,3 +83,113 @@ OUT:
     if(peer->out_msg_copy!=NULL)    free(peer->out_msg_copy);
     return -1;
 }
+
+Peer* add_peer_node(){
+    int ret;
+    Peer *node,*p;
+
+    node=(Peer *)malloc(sizeof(Peer));
+    if(node==NULL){
+        printf("%s:%d error\n",__FILE__,__LINE__);
+        return NULL;
+    }
+
+    ret=initialize_peer(node);
+    if(ret<0){
+        printf("%s:%d error\n",__FILE__,__LINE__);
+        free(node);
+        return NULL;
+    }
+
+    if(peer_head==NULL){
+        peer_head=node;
+    }
+    else{
+        p=peer_head;
+        while(p->next!=NULL){
+            p=p->next;
+        }
+        p->next=node;
+    }
+
+    return node;
+}
+
+int del_peer_node(Peer *peer){
+    Peer *p=peer_head,*q;
+    if(peer==NULL){
+        return 1;
+    }
+
+    while(p!=NULL){
+        if(p==peer){
+            if(p==peer_head){
+                peer_head=p->next;
+            }
+            else{
+                q->next=p->next;
+            }
+            free_peer_node(p);
+            return 0;
+        }
+        else{
+            q=p;//the previous one
+            p=p->next;
+        }
+    }
+}
+
+int cancel_request_list(Peer *node){
+    Request_piece *p=node->Request_piece_head;
+
+    while(p!=NULL){
+        node->Request_piece_head=node->Request_piece_head->next;
+        free(p);
+        p=node->Request_piece_head;
+    }
+
+    return 0;
+}
+
+int cancel_requested_list(Peer *node){
+    Request_piece *p=node->Requested_piece_head;
+
+    while(p!=NULL){
+        node->Request_piece_head=node->Requested_piece_head->next;
+        free(p);
+        p=node->Requested_piece_head;
+    }
+    return 0;
+}
+
+void free_peer_node(Peer *node){
+    if(node!=NULL){
+        if(node->in_buff!=NULL){
+            free(node->in_buff);
+        }
+
+        if(node->out_msg!=NULL){
+            free(node->out_msg);
+        }
+
+        if(node->out_msg_copy!=NULL){
+            free(node->out_msg_copy); 
+        }
+
+        cancel_request_list(node);
+        cancel_requested_list(node);
+    }
+}
+
+void release_memory_in_peer(){
+    Peer *p=peer_head,*q;
+    while(p!=NULL){
+        q=p->next;
+        free_peer_node(p);
+        p=q;
+    }
+}
+
+void print_peers_data(){
+    //TODO
+}
