@@ -1,0 +1,6 @@
+Now the Test directory container some modules for testing.
+
+parse present a torrent file parser.
+bitfield present a bitmap of download file.
+peer present the peers infomation.
+data present a cache of message.

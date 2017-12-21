@@ -5,12 +5,14 @@
 	> Created Time: 2017年12月18日 星期一 18时36分05秒
 ************************************************************************/
 #include <stdio.h>
-#include "parser.h"
 #include <ctype.h>
 #include <malloc.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "parser.h"
+#include "sha1.h"
+
 char *metafile_content=NULL;
 long filesize;
 int piece_length=0;
@@ -336,10 +338,74 @@ int get_file_length(){
     #endif
 }
 
-//TODO omit this method implemention,because I don't know what will use it.
 int get_info_hash(){
     int push_pop;
     long i,begin,end;
+    if(metafile_content!=NULL){
+        if(find_keyword("4:info",&i)==1){
+            begin=i+6;
+        }
+        else{
+            return -1;
+        }
+
+        i=i+6;//skip '4:info'
+        for(;i<filesize;){
+            if(metafile_content[i]=='d'){
+                push_pop++;
+                i++;
+            } 
+            else if(metafile_content[i]=='l'){
+                push_pop++;
+                i++;
+            }
+            else if(metafile_content[i]=='i'){
+                i++;
+                if(i==filesize){
+                    return -1;
+                }
+                while(metafile_content[i]!='e'){
+                    if((i+1)==filesize){
+                        return -1;
+                    }
+                    else{
+                        i++;
+                    }
+                }
+                i++;//skip 'e'
+            }
+            else if(metafile_content[i]>='0'&&metafile_content[i]<'9'){
+                int number=0;
+                while(metafile_content[i]>='0'&&metafile_content[i]<='9'){
+                    number=number*10+metafile_content[i]-'0';
+                    i++;
+                }
+                i++;//skip ":"
+                i=i+number;//skip string
+            }
+            else if(metafile_content[i]=='e'){
+                push_pop--;
+                if(push_pop==0){
+                    end=i;
+                    break;
+                }
+                else{
+                    i++;
+                }
+            }
+            else{
+                return -1;
+            }
+        }
+        if(i==filesize){
+            return -1;
+        }
+
+        //TODO gethash
+    }
+    else{
+        return -1;
+    }
 }
 
 int get_peer_id(){
