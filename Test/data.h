@@ -10,8 +10,8 @@
 
 typedef struct _Btcache{
     unsigned char *buff;
-    int index;
-    int begin;
+    int index;              //The piece index
+    int begin;              //The slice index of the piece
     int length;
 
     unsigned char in_use;

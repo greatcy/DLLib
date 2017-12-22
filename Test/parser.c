@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <stdint.h>
 #include "parser.h"
 #include "sha1.h"
 
@@ -216,13 +217,13 @@ int get_pieces(){
     if(find_keyword("6:pieces",&i)==1){
         i=i+8;
         while(metafile_content[i]!=':'){
-            piece_length=piece_length*10+(metafile_content[i]-'0');
+            piece_length=pieces_length*10+(metafile_content[i]-'0');
             i++;
         }
         i++;//skip ':'
-        piece=(char *)malloc(piece_length+1);
+        piece=(char *)malloc(pieces_length+1);
         memcpy(piece,&metafile_content[i],pieces_length);
-        piece[piece_length]='\0';
+        piece[pieces_length]='\0';
     }
     else{
         return -1;
@@ -376,10 +377,10 @@ int get_info_hash(){
             }
             else if(metafile_content[i]>='0'&&metafile_content[i]<'9'){
                 int number=0;
-                while(metafile_content[i]>='0'&&metafile_content[i]<='9'){
+                    while(metafile_content[i]>='0'&&metafile_content[i]<='9'){
                     number=number*10+metafile_content[i]-'0';
                     i++;
-                }
+                    }
                 i++;//skip ":"
                 i=i+number;//skip string
             }
@@ -401,11 +402,14 @@ int get_info_hash(){
             return -1;
         }
 
-        //TODO gethash
+        SHA1_CTX context;
+        SHA1_Init(&context);
+        SHA1_Update(&context,&metafile_content[begin],end-begin+1);
+        SHA1_Final(&context,info_hash);
     }
     else{
         return -1;
-    }
+        }
 }
 
 int get_peer_id(){

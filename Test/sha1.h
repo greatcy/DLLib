@@ -3,7 +3,7 @@
 
 #ifndef __SHA1_H
 #define __SHA1_H
-
+#include <stdint.h>
 typedef struct {
   uint32_t state[5];
   uint32_t count[2];
