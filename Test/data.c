@@ -638,16 +638,136 @@ int is_a_complete_piece(int index,int *sequence){
 void clear_btcache(){
     Btcache *node=btcache_head;
     while(node!=NULL){
-        p->index=-1;
-        p->begin=-1;
-        p->length=-1;
-        p->in_use=0;
-        p->read_write=-1;
-        p->is_full=0;
-        p->is_writed=0;
-        p->access_count=0;
+        node->index=-1;
+        node->begin=-1;
+        node->length=-1;
+        node->in_use=0;
+        node->read_write=-1;
+        node->is_full=0;
+        node->is_writed=0;
+        node->access_count=0;
         node=node->next;
     }
 }
 
+int write_slice_to_btcache(int index,int begin,int length,unsigned char *buff,Peer *peer){
+    int count=0,slice_count,unuse_count;
+    Btcache *p=btcache_head,*q=NULL;
+    if(buff==NULL||peer==NULL){
+        return -1;
+    }
+    if(index==last_piece_index){
+        //TODO
+        //write_slice_to_last_piece(index,begin,length,buff,peer);
+        return 0;
+    }
 
+    //TODO why?
+    if(end_mode==1){
+        if(get_bit_value(bitmap,index)==1){
+            return 0;
+        }
+    }
+
+    slice_count=piece_length/(16*1024);
+    while(p!=NULL){
+        if(count%slice_count==0){
+            q=p;
+        }
+        if(p->index==index&&p->in_use==1){
+            break;
+        }
+        count++;
+        p=p->next;
+    }
+
+    if(p!=NULL){
+        count=begin/(16*1024);
+        p=q;
+        while(count>0){
+            p=p->next;
+            count--;
+        }
+
+        if(p->begin==begin&&p->in_use==1&&p->read_write==1&&
+          p->is_full==1){
+            return 0;//already exist.
+        }
+
+        p->index=index;
+        p->begin=begin;
+        p->length=length;
+        p->in_use=1;
+        p->read_write=1;
+        p->is_full=1;
+        p->is_writed=0;
+        p->access_count=0;
+        memcpy(p->buff,buff,length);
+        printf("++++++ write a slice to btcache index:%-6d begin:%-6x +++++\n",index,begin);
+        if(download_piece_num<10){
+            int sequence;
+            int ret;
+            ret=is_a_complete_piece(index,&sequence);
+            if(ret==1){
+                printf("###### begin write a piece to harddisk ########\n");
+                write_piece_to_harddisk(sequence,peer);
+                printf("###### end write a piece to harddisk #######\n");
+            }
+        }
+        return 0;
+    }
+
+    //the piece not exist.
+    int i=4;//TODO why 4?
+    while(i>0){
+        slice_count=piece_length/(16*1024);
+        count=0;
+        unuse_count=0;
+        Btcache *p;
+        p=btcache_head;
+        while(p!=NULL){
+            if(count%slice_count==0){
+                unuse_count=0;
+                q=p;
+            }
+            if(p->in_use){
+                unuse_count++;
+            }
+            if(unuse_count==slice_count){
+                break;
+            }
+            count++;
+            p=p->next;
+        }
+
+        if(p!=NULL){
+            p=q;
+            count=begin/(16*1024);
+            while(count>0){
+                p=p->next;
+                count--;
+            }
+
+            p->index=index;
+            p->read_write=1;
+            p->is_full=1;
+            p->is_writed=0;
+            p->access_count=0;
+
+            memcpy(p->buff,buff,length);
+            printf("++++++ write a slice to btcache index:%-6d begin:%-6d ++++++\n",index,begin);
+            return 0;
+        }
+
+        //why?
+        if(i==4)write_btcache_to_harddisk(peer);
+        if(i==3)release_read_btcache_node(16);
+        if(i==2)release_read_btcache_node(8);
+        if(i==1)release_read_btcache_node(0);
+        i--;
+    }    
+
+    printf("++++++ write a slice to btcache index:%-6d begin:%-6d ++++++\n",index,begin);
+    clear_btcache();
+    return 0;
+}

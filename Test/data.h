@@ -7,6 +7,7 @@
 
 #ifndef _DATA_H
 #define _DATA_H
+#include "peer.h"
 
 typedef struct _Btcache{
     unsigned char *buff;
@@ -39,7 +40,7 @@ int read_piece_from_harddisk(Btcache *p,int index);
 int write_btcache_to_harddisk(Peer *peer);
 int release_read_btcache_node(int base_count);
 void clear_btcache_before_peer_close(Peer *peer);
-void write_slice_to_btcache(int index,int begin,int length,unsigned char *buff,int len,Peer *peer);
+int write_slice_to_btcache(int index,int begin,int length,unsigned char *buff,Peer *peer);
 int read_slice_for_send(int index,int begin,int length,Peer* peer);
 int write_last_piece_to_btcache(Peer *peer);
 int write_slice_to_last_piece(int index,int begin,int length,unsigned char *buff,int len,Peer *peer);
