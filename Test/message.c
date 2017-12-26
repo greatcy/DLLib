@@ -188,5 +188,135 @@ int create_request_msg(int index,int begin,int length,Peer *peer){
     return 0;
 }
 
+int create_piece_msg(int index,int begin,char *block,int b_len,Peer *peer){
+    int i;
+    unsigned char c[4];
+    unsigned char *buffer=peer->out_msg+peer->msg_len;
+    int len=MSG_SIZE-peer->msg_len;
+
+    if(len<b_len+13){
+        printf("%s:%d buffer too small \n",__FILE__,__LINE__);
+        return -1;
+    }
+
+    int_to_char(b_len+9,c);
+
+    for(i=0;i<4;i++){
+        buffer[i]=c[i];
+    }
+    buffer[4]=7;
+
+    int_to_char(index,c);
+    for(i=0;i<4;i++){
+        buffer[i+5]=c[i];
+    }
+
+    int_to_char(index,c);
+    for(i=0;i<4;i++){
+        buffer[i+9]=c[i];
+    }
+    
+    int_to_char(index,c);
+    for(i=0;i<4;i++){
+        buffer[i+13]=c[i];
+    }
+
+    peer->msg_len+=b_len+13;
+    return 0;
+}
+
+int create_cancel_msg(int index,int begin,int length,Peer *peer){
+    //TODO
+    return 0;
+}
+
+int create_port_msg(int port,Peer *peer){
+    //TODO
+    return 0;
+}
+
+int is_complete_message(unsigned char *buffer,unsigned int len,int *ok_len){
+    //TODO
+    return 0;
+}
+
+int process_handshake_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_keep_alive_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_choke_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_unchoke_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_interested_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
 
 
+int process_uninterested_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+
+int process_have_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_cancel_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_bitfield_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_request_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int process_piece_msg(Peer *peer,unsigned char *buff,int len){
+    //TODO
+    return 0;
+}
+
+int parse_response(Peer *peer){
+    //TODO
+    return 0;
+}
+
+int parse_response_uncomplete_msg(Peer *p,int ok_len){
+    //TODO
+    return 0;
+}
+
+int prepare_send_have_msg(){
+    //TODO
+    return 0;
+}
+
+int create_respone_message(Peer *peer){
+    //TODO
+    return 0;
+}
+
+void discard_send_buffer(Peer *peer){
+    //TODO
+}
