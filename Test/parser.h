@@ -10,7 +10,7 @@
 typedef struct _Announce_list{
     char annouce[128];
     struct _Announce_list *next;
-}  Announce_list;
+} Announce_list;
 
 typedef struct _Files{
     char path[256];
@@ -19,6 +19,7 @@ typedef struct _Files{
 } Files;
 
 //read torrent file,get file name ,filesize ,and content
+//@param metafile_name 待读取的文件名
 int read_metafile(char *metafile_name);
 //find keyword in File
 int find_keyword(char *keyword,long *position);

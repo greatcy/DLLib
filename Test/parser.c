@@ -14,7 +14,7 @@
 #include "parser.h"
 #include "sha1.h"
 
-char *metafile_content=NULL;
+unsigned char *metafile_content=NULL;
 long filesize;
 int piece_length=0;
 char *piece=NULL;
@@ -41,20 +41,23 @@ int read_metafile(char *metafile_name){
         return -1;
     }
     fseek(file,0,SEEK_SET);
+    metafile_content=malloc(length+1);
     int i;
     for(i=0;i<length;i++){
         metafile_content[i]=fgetc(file);
     }
+
     metafile_content[length]='\0';
     filesize=length+1;
     return 0;
 }
+
 int find_keyword(char *keyword,long *position){
     if(keyword==NULL){
         return -1; 
     } 
     int length=0;
-    while(keyword[length]=='\0'){
+    while(keyword[length]!='\0'){
        length++; 
     }
     if(length>filesize){
@@ -62,7 +65,7 @@ int find_keyword(char *keyword,long *position){
     }
     long cur_pos=0;
     while(cur_pos+length<=filesize){
-        if(memcmp(keyword,&metafile_content[cur_pos],length)==1){
+        if(memcmp(keyword,&metafile_content[cur_pos],length)==0){
             *position=cur_pos;
             return 1;
         } 
@@ -70,6 +73,7 @@ int find_keyword(char *keyword,long *position){
     }
     return 0;
 }
+
 int read_announce_list(){
     Announce_list *node=NULL;
     Announce_list *p=NULL;
