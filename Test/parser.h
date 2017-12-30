@@ -44,6 +44,5 @@ int get_info_hash();
 int get_peer_id();
 
 void release_memory_in_parse_metafile();
-int parse_metafile(char *metafile);
 
 #endif

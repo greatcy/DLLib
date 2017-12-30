@@ -82,7 +82,6 @@ int read_announce_list(){
     int find_keyword_result=find_keyword("13:announce_list",&position);
     if(find_keyword_result==0){
         if(find_keyword("8:announce",&position)==1){
-            //find announce TODO why not hard code
             position=position+strlen("8:announce"); 
             //get the url length
             while(isdigit(metafile_content[position])){
@@ -114,8 +113,9 @@ int read_announce_list(){
                 return -1;
             }
 
-            //TODO just handle http protocol
-            if(memcmp(&metafile_content[position],"http",4)){
+            //TODO just handle http/https protocol
+            if(memcmp(&metafile_content[position],"http",4)||
+              memcmp(&metafile_content[position],"https",5)){
                 node=(Announce_list *)malloc(sizeof(Announce_list)); 
                 strncpy(node->annouce,&metafile_content[position],len);
                 node->annouce[len]='\0';

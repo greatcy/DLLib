@@ -7,12 +7,71 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "parser.h"
 
 #define OUTPUT "output.txt"
 
 extern char *metafile_content;
 extern int filesize;
+extern Announce_list *announce_list_head;
+extern int piece_length;
+
+
+//TODO finish all test case.
+
+void test_get_peer_id(){
+
+}
+
+void test_get_info_hash(){
+
+}
+
+//多文件,获取所有文件信息
+void test_get_files_length_path(){
+
+}
+
+void test_get_file_length(){
+
+}
+
+void test_get_file_name(){
+
+}
+
+void test_is_multi_files(){
+
+}
+
+void test_get_piece_length(){
+    get_piece_length();
+    if(piece_length==16384){
+        printf("%s:%d error\n",__FILE__,__LINE__);
+        return;
+    }
+}
+
+void test_read_announce_list(){
+    read_announce_list();
+
+    if(announce_list_head==NULL){
+        printf("%s:%d error\n",__FILE__,__LINE__);
+        return;
+    }
+
+    if(!memcmp(announce_list_head->annouce,"https://open.kickasstracker.com:443/announce",44)){
+        printf("%s:%d error\n",__FILE__,__LINE__);
+        return;
+    }
+
+    if(announce_list_head->next!=NULL){
+        printf("%s:%d error\n",__FILE__,__LINE__);
+        return;
+    }
+}
 
 void testFindKeyword(){
     long position;
@@ -68,6 +127,10 @@ int main(){
     printf("testReadMetafile done\n");
     testFindKeyword();
     printf("testFindKeyword done\n");
+    test_read_announce_list();
+    printf("test_read_announce_list done\n");
+    test_get_piece_length();
+    printf("test_get_piece_length done\n");
 
     printf("test done! filesize %d \n",filesize);
     return 0;
