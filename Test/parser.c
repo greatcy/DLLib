@@ -413,7 +413,7 @@ int get_info_hash(){
     }
     else{
         return -1;
-        }
+    }
 }
 
 int get_peer_id(){
