@@ -22,6 +22,10 @@ int main(int argc,char *argv[]){
         printf("%s:%d error\n",__FILE__,__LINE__);
         return -1;
     }
+    //else{
+    //    printf("argv[0]:%s,argv[1]:%s,argv[2]:%s\n",argv[0],
+    //          argv[1],argv[2]);
+    //}
 
     sock=socket(PF_INET,SOCK_STREAM,0);
     if(sock==-1){
