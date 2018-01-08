@@ -19,19 +19,7 @@
 #include "tracker.h"
 #include "peer.h"
 
-extern unsigned char info_hash[20];  //这个是对所有piece的hash值做的哈希值
-extern unsigned char peer_id[20];
 extern Announce_list *announce_list_head;
-
-extern int *sock;
-extern struct sockaddr_in *tracker;
-extern int *valid;
-extern int tracker_count;
-extern int *peer_sock;
-extern struct sockaddr_in *peer_addr;
-extern int *peer_valid;
-extern int peer_count;
-Peer_addr *peer_addr_head=NULL;
 
 int http_encode(unsigned char *str,int strSize,char *result,int bufSize){ 
     int i;
@@ -341,16 +329,5 @@ int get_response_type(char *buffer,int len,int *total_length){
     }
 }
 
-int parse_tracker_responsel(char *buffer,int ret,char *redirection,int len){
-    //TODO
-    return 0;
-}
 
-int add_peer_node_to_peerlist(int *sock,struct sockaddr_in saptr){
-    //TODO
-    return 0;
-}
-void free_peer_addr_head(){
-    //TODO   
-}
 
