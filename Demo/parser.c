@@ -11,8 +11,8 @@
 #include <string.h>
 #include <time.h>
 #include <stdint.h>
+
 #include "parser.h"
-#include "sha1.h"
 
 unsigned char *metafile_content=NULL;
 long filesize;
@@ -320,7 +320,7 @@ int get_file_length(){
     long i;
     if(is_muti_files()){
         if(files_head==NULL){
-           get_files_length_path; 
+           get_files_length_path(); 
         }
         Files *p=files_head;
         while(p!=NULL){
@@ -406,10 +406,10 @@ int get_info_hash(){
             return -1;
         }
 
-        SHA1_CTX context;
-        SHA1_Init(&context);
-        SHA1_Update(&context,&metafile_content[begin],end-begin+1);
-        SHA1_Final(&context,info_hash);
+        //SHA1Context context;
+        //SHA1Reset(&context);
+        //SHA1Input(&context,&metafile_content[begin],end-begin+1);
+        //SHA1Result(&context,info_hash);
     }
     else{
         return -1;
