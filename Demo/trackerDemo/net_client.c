@@ -26,7 +26,6 @@ int sock;
 
 int connect_tracker(){/*{{{*/
     struct sockaddr_in serv_addr;
-    int str_len;
     char *host_name;
     unsigned short *port;
     struct hostent *host;
@@ -83,7 +82,7 @@ int send_request(){/*{{{*/
         return -1;
     }
     
-    //write(sock,request,strlen(request));
+    write(sock,request,strlen(request));
 
     printf("%s\n",request);
 
