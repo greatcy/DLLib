@@ -14,7 +14,7 @@ typedef struct _Announce_list{
 
 typedef struct _Files{
     char path[256];
-    long length;
+    unsigned long long length;
     struct _Files *next;
 } Files;
 

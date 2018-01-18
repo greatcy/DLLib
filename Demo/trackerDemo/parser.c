@@ -13,6 +13,7 @@
 #include <stdint.h>
 
 #include "parser.h"
+#include "sha1.h"
 
 unsigned char *metafile_content=NULL;
 long filesize;
@@ -79,7 +80,7 @@ int read_announce_list(){
     Announce_list *p=NULL;
     long position;
     int len=0;
-    int find_keyword_result=find_keyword("13:announce_list",&position);
+    int find_keyword_result=find_keyword("13:announce-list",&position);
     if(find_keyword_result==0){
         if(find_keyword("8:announce",&position)==1){
             position=position+strlen("8:announce"); 
@@ -97,7 +98,7 @@ int read_announce_list(){
         } 
     }  
     else if(find_keyword_result==1){
-        position=position+strlen("13:announce_list"); 
+        position=position+strlen("13:announce-list"); 
         position++;//skip l
         while(metafile_content[position]!='e'){
             //loop to get urls list 
@@ -114,8 +115,8 @@ int read_announce_list(){
             }
 
             //TODO just handle http/https protocol
-            if(memcmp(&metafile_content[position],"http",4)||
-              memcmp(&metafile_content[position],"https",5)){
+            if(memcmp(&metafile_content[position],"http",4)==0||
+              memcmp(&metafile_content[position],"https",5)==0){
                 node=(Announce_list *)malloc(sizeof(Announce_list)); 
                 strncpy(node->annouce,&metafile_content[position],len);
                 node->annouce[len]='\0';
@@ -263,55 +264,66 @@ int get_file_name(){
 
 int get_files_length_path(){
     long position=0;
-    int len;
+    unsigned long long len;
     Files *file;
     if(find_keyword("5:files",&position)==1){
+        position=position+7;//skip "5:files"
         position++;//skip 'l' 
         while(metafile_content[position]!='e'){
         //skip 'd'
         position++;
          //get a Files
         file=(Files *)malloc(sizeof(Files));
-        if(memcmp("6:length",&metafile_content[position],8)){
+        if(memcmp("6:length",&metafile_content[position],8)==0){/*{{{*/
             //skip 6:length
             position=position+8;
             //skip 'i'
             position++;
+            len=0;
             while(metafile_content[position]!='e'){
-               len=len*10+(metafile_content[position]-'0');
+                len=len*10+(metafile_content[position]-'0');
+                position++; 
             }
             file->length=len;
             //skip 'e'
             position++;
          }
-         else if(memcmp("4:path",&metafile_content[position],4)){//path
+         if(memcmp("4:path",&metafile_content[position],6)==0){//path
+            position+=6;//skip 4:path
             //skip l 
-            //TODO may be more than one path 
             position++;
-            while(metafile_content[position]!='e')
+            //while(metafile_content[position]!='e')
+            len=0;
+            while(isdigit(metafile_content[position]))
             {
-               len=len*10+(metafile_content[position]-'0');
+                len=len*10+(metafile_content[position]-'0');
+                position++; 
             }
+            position++;//skip :
             strncpy(file->path,&metafile_content[position],len);
+            position+=len;
+            //skip e
+            position++;
             //skip e
             position++;
          }
          else{
             //run error!
             return -1;
-         }
+         }/*}}}*/
         if(files_head==NULL){
             files_head=file;
         }
         else{
-            Files *p=files_head->next;
+            Files *p=files_head;
             while(p!=NULL){
                 if(p->next==NULL){
                     p->next=file;
+                    break;
                 }
             }   
         }
-        //goto another map
+        //goto another file
         }
     }
 }
@@ -406,10 +418,10 @@ int get_info_hash(){
             return -1;
         }
 
-        //SHA1Context context;
-        //SHA1Reset(&context);
-        //SHA1Input(&context,&metafile_content[begin],end-begin+1);
-        //SHA1Result(&context,info_hash);
+        SHA1Context context;
+        SHA1Reset(&context);
+        SHA1Input(&context,&metafile_content[begin],end-begin+1);
+        SHA1Result(&context,info_hash);
     }
     else{
         return -1;

@@ -18,7 +18,9 @@
 #include <time.h>
 
 #include "simple_tracker.h"
+#include "parser.h"
 
+extern unsigned char info_hash[20];
 extern Announce_list *announce_list_head;
 extern unsigned char peer_id[20];
 
@@ -57,42 +59,38 @@ int http_encode(unsigned char *str,int strSize,char *result,int bufSize){ /*{{{*
 
 int get_tracker_name(Announce_list *node,char *name,int len){/*{{{*/
     if(node!=NULL){
-	int i,j,start;
+	int i=0,j=0,start=0;
 	for(i=0;i<128;i++){
 	    if(node->annouce[i]=='/'){
-		i++;
-		start=1;
+		    i+=2;//skip //
+		    start=1;
 	    }
 
-	    if(node->annouce[i]==':'){
-		return ++j;
+	    if(start==1&&node->annouce[i]==':'){
+		    return ++j;
 	    }
 	    else if(start==1){
-		name[j]=node->annouce[i];
-		j++;
+		    name[j]=node->annouce[i];
+		    j++;
 	    }
 	}
     }
     return 0;
 }/*}}}*/
 
-int get_tracker_port(Announce_list *node,unsigned short *port){/*{{{*/
+int get_tracker_port(Announce_list *node,unsigned short *port,int position){/*{{{*/
     if(node!=NULL){
-	int i,j,start;
-	for(i=0;i<128;i++){
-	    if(node->annouce[i]==':'){
-		i++;
-		start=1;
-	    }
-
-	    if(start==1){
-		if(isdigit(node->annouce[i])){
-		    *port=*port*10+(node->annouce[i]-'0');
-		    j++;
-		}
-		else{
-		    return ++j;
-		}
+	    int i=0;
+        unsigned short tmp;
+	    for(i=position;i<128;i++){
+	        if(node->annouce[i]==':'){
+                i++;//skip :
+	    	    while(isdigit(node->annouce[i])){
+	    	        tmp=tmp*10+(node->annouce[i]-'0');
+	    	        i++;
+	    	    }
+                *port=tmp;
+	    	    return i;
 	        }
 	    }
     }
@@ -106,14 +104,14 @@ int create_request(char *request,int len,Announce_list *node,unsigned short port
     char tracker_name[128];
     unsigned short tracker_port;
 
-    //http_encode(info_hash,20,encoded_info_hash,100);
+    http_encode(info_hash,20,encoded_info_hash,100);
     http_encode(peer_id,20,encoded_peer_id,100);
 
     srand(time(NULL));
     key=rand()/10000;
 
-    get_tracker_name(node,tracker_name,128);
-    get_tracker_port(node,&tracker_port);
+    int offset=get_tracker_name(node,tracker_name,128);
+    get_tracker_port(node,&tracker_port,offset);
 
     sprintf(request,"GET /announce?info_hash=%s&peer_id=%s&port=%u"
             "&uploaded=%lld&downloaded=%lld&left=%lld"
@@ -123,9 +121,9 @@ int create_request(char *request,int len,Announce_list *node,unsigned short port
            encoded_info_hash,encoded_peer_id,port,up,down,left,
            key,numwant,tracker_name);
 
-    #ifdef DEBUG
-        printf("request :%s\n",request);
-    #endif
+    //#ifdef DEBUG
+    //    printf("request :%s\n",request);
+    //#endif
 
     return 0;
 }/*}}}*/
