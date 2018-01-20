@@ -118,8 +118,8 @@ int create_request(char *request,int len,Announce_list *node,unsigned short port
             "&event=started&key=%d&compat=l&numwant=%d HTTP/1.0\r\n"
             "Host:%s\r\nUser-Agent: Bittorrent\r\nAccept: */*\r\n"
             "Accept-Encoding:gzip\r\nConnection: closed\r\n\r\n",
-           encoded_info_hash,encoded_peer_id,port,up,down,left,
-           key,numwant,tracker_name);
+            encoded_info_hash,encoded_peer_id,port,up,down,left,
+            key,numwant,tracker_name);
 
     //#ifdef DEBUG
     //    printf("request :%s\n",request);

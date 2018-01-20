@@ -1,0 +1,162 @@
+<DICTIONARY>
+	<KEY>
+		announce
+	</KEY>
+	<VALUE>
+		udp://tracker.leechers-paradise.org:6969/announce
+	</VALUE>
+	<KEY>
+		announce-list
+	</KEY>
+	<VALUE>
+		<LIST>
+			<LIST>
+				udp://tracker.leechers-paradise.org:6969/announce
+			</LIST>
+			<LIST>
+				udp://p4p.arenabg.com:1337/announce
+			</LIST>
+			<LIST>
+				udp://tracker.coppersurfer.tk:6969/announcenounce
+			</LIST>
+			<LIST>
+				udp://eddie4.nl:6969/announcenounce
+			</LIST>
+			<LIST>
+				udp://tracker.grepler.com:6969/announce
+			</LIST>
+			<LIST>
+				udp://tracker.pirateparty.gr:6969/announceenounce
+			</LIST>
+			<LIST>
+				udp://shadowshq.yi.org:6969/announcence
+			</LIST>
+			<LIST>
+				udp://tracker.opentrackr.org:1337/announceenounce
+			</LIST>
+			<LIST>
+				https://open.kickasstracker.com:443/announceounce
+			</LIST>
+		</LIST>
+	</VALUE>
+	<KEY>
+		created byist
+	</KEY>
+	<VALUE>
+		dottorrent-gui/1.3.5 (https://github.com/kz26/dottorrent-gui)
+	</VALUE>
+	<KEY>
+		creation date
+	</KEY>
+	<VALUE>
+		-7378630919061331516
+	</VALUE>
+	<KEY>
+		info
+	</KEY>
+	<VALUE>
+<DICTIONARY>
+			<KEY>
+				files
+			</KEY>
+			<VALUE>
+				<LIST>
+<DICTIONARY>
+						<KEY>
+							length
+						</KEY>
+						<VALUE>
+							-4374350208512731551
+						</VALUE>
+						<KEY>
+							path
+						</KEY>
+						<VALUE>
+							<LIST>
+								ECLiPSE.txtte
+							</LIST>
+						</VALUE>
+</DICTIONARY>
+<DICTIONARY>
+						<KEY>
+							length
+						</KEY>
+						<VALUE>
+							-6850013937707754128
+						</VALUE>
+						<KEY>
+							path
+						</KEY>
+						<VALUE>
+							<LIST>
+								jvb.azw3txtte
+							</LIST>
+						</VALUE>
+</DICTIONARY>
+<DICTIONARY>
+						<KEY>
+							length
+						</KEY>
+						<VALUE>
+							5286836917755251277
+						</VALUE>
+						<KEY>
+							path
+						</KEY>
+						<VALUE>
+							<LIST>
+								jvb.pdf
+							</LIST>
+						</VALUE>
+</DICTIONARY>
+<DICTIONARY>
+						<KEY>
+							length
+						</KEY>
+						<VALUE>
+							1407239386519681198
+						</VALUE>
+						<KEY>
+							path
+						</KEY>
+						<VALUE>
+							<LIST>
+								Read Me.txtte
+							</LIST>
+						</VALUE>
+</DICTIONARY>
+				</LIST>
+			</VALUE>
+			<KEY>
+				name
+			</KEY>
+			<VALUE>
+				JAVA For Beginners  In 8 Hours  Learn Coding Fast  Java Programming Language Crash Course - pdf.azw3 - 5475 [ECLiPSE]
+			</VALUE>
+			<KEY>
+				piece lengthe
+			</KEY>
+			<VALUE>
+				-4374350208509535232
+			</VALUE>
+			<KEY>
+				pieces
+			</KEY>
+			<VALUE>
+				õ‘lzb?UÑÔl„Pí··ÓXW‹u¸×Y4û~Ø*»~¹Š]’h/;—ˆ;„ßLÏ„¥:Fİ=ÏcØPór%‚·€,È†`²â>TĞº¨Äo•Y;óÿQÏ¨‡“ ªn¦UĞ¯—dÀ4—pvU²,ûÄ»%+A”›O„’ÑôJ©èµàóÜ,Íéeñ©KMÄËX°á(H¥äò‡˜§[ÄøÿÖqÏÃ«1öóËT¾‚k+UDÒÊ6[Òäi)ìkÆÆ…˜5uœ"ª{Şzf‘6o¸61&O¤-/•D\­f¤˜ƒvßĞ^iij—ùòE3I2cs+•;À[™Ú¨=GÛªòOçì: :@\àúå°$ÁsÿëWmq\iùÀûìs‰</®*Qîjîÿš†şwÑt~%×…`Â4Ê¿t…5Ş¯ê…¹TüÂœËÌuÑ”ı@^v:wŸ 4õ¾Ne™U¢†YD½íõ$¡71eD¸$˜WT†=àéAˆÂUáâœ‹ÙyZ°5şÍ¯y&îï äşi2ş­¿fTV@%ùØAè#ĞmÊ€r9{¶ëÈá"uî¸/£3„„²"‹…ìqI"Î¢û[.n
+			</VALUE>
+			<KEY>
+				privateÑÔl„Pí··ÓXW‹u¸á
+			</KEY>
+			<VALUE>
+				1407239386520000
+			</VALUE>
+			<KEY>
+				source
+			</KEY>
+			<VALUE>
+				https://lensdump.com‹u¸á
+			</VALUE>
+</DICTIONARY>
+	</VALUE>
+</DICTIONARY>
