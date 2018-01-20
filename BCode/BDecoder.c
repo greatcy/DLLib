@@ -11,7 +11,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-#define TAB_SPACE "\t"
+#define TAB_SPACE "  "
 #define TAG_LIST "<LIST>\n"
 #define TAG_LIST_D "</LIST>\n"
 #define TAG_DICTOINARY "<DICTIONARY>\n"
@@ -45,14 +45,14 @@ int print_int(){/*{{{*/
 
     file_cursor++;
 
-    long value;
+    unsigned long long value=0;
     while(file_content[file_cursor]!='e'){
         value=value*10+(file_content[file_cursor]-'0');
         file_cursor++;
     }
 
     file_cursor++;
-    printf("%ld\n",value);
+    printf("%lld\n",value);
     
     return 0;
 }/*}}}*/
@@ -131,6 +131,7 @@ int print_dictionary(){/*{{{*/
         return -1;
     }
 
+    print_tab();
     printf(TAG_DICTOINARY);
     tab_cursor++;
     file_cursor++;
@@ -176,8 +177,9 @@ int print_dictionary(){/*{{{*/
         printf(TAG_DICTOINARY_VALUE_D);
     }
 
-    printf(TAG_DICTOINARY_D);
     tab_cursor--;
+    print_tab();
+    printf(TAG_DICTOINARY_D);
     file_cursor++;
     return 0;
 }/*}}}*/
