@@ -264,7 +264,7 @@ int get_file_name(){
 
 int get_files_length_path(){
     long position=0;
-    unsigned long long len;
+    unsigned long long len=0;
     Files *file;
     if(find_keyword("5:files",&position)==1){
         position=position+7;//skip "5:files"
@@ -321,6 +321,9 @@ int get_files_length_path(){
                     p->next=file;
                     break;
                 }
+                else{
+                    p=p->next;
+                }
             }   
         }
         //goto another file
@@ -356,8 +359,9 @@ int get_file_length(){
 }
 
 int get_info_hash(){
-    int push_pop;
-    long i,begin,end;
+    int push_pop=0;
+    long begin,end;
+    long i=0;
     if(metafile_content!=NULL){
         if(find_keyword("4:info",&i)==1){
             begin=i+6;
@@ -366,17 +370,21 @@ int get_info_hash(){
             return -1;
         }
 
+        //printf("start get_info_hash\n");
         i=i+6;//skip '4:info'
         for(;i<filesize;){
             if(metafile_content[i]=='d'){
+                //printf("get d i:%ld\n",i);
                 push_pop++;
                 i++;
             } 
             else if(metafile_content[i]=='l'){
+                //printf("get l i:%ld\n",i);
                 push_pop++;
                 i++;
             }
             else if(metafile_content[i]=='i'){
+                //printf("get i i:%ld\n",i);
                 i++;
                 if(i==filesize){
                     return -1;
@@ -391,16 +399,18 @@ int get_info_hash(){
                 }
                 i++;//skip 'e'
             }
-            else if(metafile_content[i]>='0'&&metafile_content[i]<'9'){
+            else if(metafile_content[i]>='0'&&metafile_content[i]<='9'){
                 int number=0;
-                    while(metafile_content[i]>='0'&&metafile_content[i]<='9'){
+                while(metafile_content[i]>='0'&&metafile_content[i]<='9'){
                     number=number*10+metafile_content[i]-'0';
                     i++;
                     }
                 i++;//skip ":"
                 i=i+number;//skip string
+                //printf("get string i:%ld length:%d\n",i,number);
             }
             else if(metafile_content[i]=='e'){
+                //printf("get e i:%ld,push_pop:%d\n",i,push_pop);
                 push_pop--;
                 if(push_pop==0){
                     end=i;
@@ -411,6 +421,7 @@ int get_info_hash(){
                 }
             }
             else{
+                //printf("get error ,%s\n",&metafile_content[i]);
                 return -1;
             }
         }

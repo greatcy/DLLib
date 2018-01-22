@@ -1,0 +1,101 @@
+<DICTIONARY>
+|  <KEY>
+|  |  announce-list
+|  </KEY>
+|  <VALUE>
+|  |  <LIST>
+|  |  |  <LIST>
+|  |  |  |  udp://9.rarbg.me:2710/announce
+|  |  |  </LIST>
+|  |  |  <LIST>
+|  |  |  |  udp://9.rarbg.to:2710/announce
+|  |  |  </LIST>
+|  |  |  <LIST>
+|  |  |  |  http://tracker.btba.cc:6060/announce
+|  |  |  </LIST>
+|  |  |  <LIST>
+|  |  |  |  udp://9.rarbg.com:2720/announceounce
+|  |  |  </LIST>
+|  |  |  <LIST>
+|  |  |  |  udp://shadowshq.yi.org:6969/announce
+|  |  |  </LIST>
+|  |  |  <LIST>
+|  |  |  |  udp://shadowshq.eddie4.nl:6969/announce
+|  |  |  </LIST>
+|  |  |  <LIST>
+|  |  |  |  udp://eddie4.nl:6969/announce9/announce
+|  |  |  </LIST>
+|  |  |  <LIST>
+|  |  |  |  udp://tracker.leechers-paradise.org:6969/announce
+|  |  |  </LIST>
+|  |  </LIST>
+|  </VALUE>
+|  <KEY>
+|  |  info
+|  </KEY>
+|  <VALUE>
+|  |  <DICTIONARY>
+|  |  |  <KEY>
+|  |  |  |  files
+|  |  |  </KEY>
+|  |  |  <VALUE>
+|  |  |  |  <LIST>
+|  |  |  |  |  <DICTIONARY>
+|  |  |  |  |  |  <KEY>
+|  |  |  |  |  |  |  length
+|  |  |  |  |  |  </KEY>
+|  |  |  |  |  |  <VALUE>
+|  |  |  |  |  |  |  i2216229811e
+|  |  |  |  |  |  </VALUE>
+|  |  |  |  |  |  <KEY>
+|  |  |  |  |  |  |  path
+|  |  |  |  |  |  </KEY>
+|  |  |  |  |  |  <VALUE>
+|  |  |  |  |  |  |  <LIST>
+|  |  |  |  |  |  |  |  ã€BTå§-www.btba.com.cnã€‘æˆ‘ä»¬å…¨å®¶ä¸å¤ªç†Ÿ.We Are Family.2017.1080på›½è¯­ä¸­å­—.BTBA.mp4
+|  |  |  |  |  |  |  </LIST>
+|  |  |  |  |  |  </VALUE>
+|  |  |  |  |  </DICTIONARY>
+|  |  |  |  |  <DICTIONARY>
+|  |  |  |  |  |  <KEY>
+|  |  |  |  |  |  |  length
+|  |  |  |  |  |  </KEY>
+|  |  |  |  |  |  <VALUE>
+|  |  |  |  |  |  |  i2925e
+|  |  |  |  |  |  </VALUE>
+|  |  |  |  |  |  <KEY>
+|  |  |  |  |  |  |  path
+|  |  |  |  |  |  </KEY>
+|  |  |  |  |  |  <VALUE>
+|  |  |  |  |  |  |  <LIST>
+|  |  |  |  |  |  |  |  æ¬¢è¿å¤§å®¶ç™¾åº¦btè®¿é—®www.btba.com.cn.nfounce
+|  |  |  |  |  |  |  </LIST>
+|  |  |  |  |  |  </VALUE>
+|  |  |  |  |  </DICTIONARY>
+|  |  |  |  </LIST>
+|  |  |  </VALUE>
+|  |  |  <KEY>
+|  |  |  |  name
+|  |  |  </KEY>
+|  |  |  <VALUE>
+|  |  |  |  ã€BTå§-www.btba.com.cnã€‘æˆ‘ä»¬å…¨å®¶ä¸å¤ªç†Ÿ.We Are Family.2017.1080på›½è¯­ä¸­å­—.BTBA.mp4
+|  |  |  </VALUE>
+|  |  |  <KEY>
+|  |  |  |  piece lengtht
+|  |  |  </KEY>
+|  |  |  <VALUE>
+|  |  |  |  i4194304e
+|  |  |  </VALUE>
+|  |  |  <KEY>
+|  |  |  |  pieces
+|  |  |  </KEY>
+|  |  |  <VALUE>
+|  |  |  |  ìã*a
+‹)/5:$»Tº4Šîßü÷¥"Vİ®×àÿÖª[4ô8Œ>·ºeC*–z9Às]nÈ0Ipl¤}•Ì­G5Óó(VkJ)*-L}¶L+Ôö4Óèê9z[ĞâÆ”sˆRcŒcæPËiCŠØ9ôµ³œ~f(Üû	7„ŒEH"n65N‰4°&>KFWÿºÎˆ.Š$—Ø`ŞñÌÁD!|–}å8ë÷-O|zÙŠ¡/âcÜ¢?r GŒ6]j9¤*ÎŠlA·Øl‰ıúÙ-áyr³‹]z›—HÆ,2Ö?ÉPB(Å».];Kÿ?ò	Úû‰»%|vñ#ÂõÎ;iVä¥ÃüDoÜQ:ŞöM›”øù„Á6:‘áW-°ér”CÌ]‹X¦lNI¶ùL©BYóÙœĞÑÃ
+œUMÔ
+ÖÿY<G4H	Ò.ü×MÊ%‹ÿhÑ+uÉ¸NVôÊí{|ôlhw8ê/ËI^ÁEµ’z”ç%“Cà%rÚÛ€s*©¾P<Yï³ûÁóD:cmh'c8Æ¢¡jÍÃÙˆü‡(ùŠ	]
+‚=$€Œ_ úôš'ğ§ôr@Ù°h¥|z_B$d¬‰ ÌhßúHJâË,~=”u„F~şî·êd¦g{Æ&VS—oX3«öØ’KóˆíhC"t”éĞPŞôaÎÏœ7øUàñŞ@òúî³è	W”¾»İzÂfm¦½Sr°‘Ÿèq%m¶,QII79ÎqÀ8Á”!#9DNHßÊ‚¿‚^€±Ù»ÇQIg6£ELáÄñ{ €'ğÔío«´53YøITÓOº=Ütr$ƒÊO˜™rãô©´ÿƒˆ;WJ:¹³S`¥
+|  |  |  </VALUE>
+|  |  </DICTIONARY>
+|  </VALUE>
+</DICTIONARY>

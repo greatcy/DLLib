@@ -115,7 +115,7 @@ int create_request(char *request,int len,Announce_list *node,unsigned short port
 
     sprintf(request,"GET /announce?info_hash=%s&peer_id=%s&port=%u"
             "&uploaded=%lld&downloaded=%lld&left=%lld"
-            "&event=started&key=%d&compat=l&numwant=%d HTTP/1.0\r\n"
+            "&event=started&key=%d&compact=1&numwant=%d HTTP/1.0\r\n"
             "Host:%s\r\nUser-Agent: Bittorrent\r\nAccept: */*\r\n"
             "Accept-Encoding:gzip\r\nConnection: closed\r\n\r\n",
             encoded_info_hash,encoded_peer_id,port,up,down,left,

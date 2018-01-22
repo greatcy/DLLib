@@ -11,7 +11,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-#define TAB_SPACE "  "
+#define TAB_SPACE "|  "
 #define TAG_LIST "<LIST>\n"
 #define TAG_LIST_D "</LIST>\n"
 #define TAG_DICTOINARY "<DICTIONARY>\n"
@@ -52,7 +52,7 @@ int print_int(){/*{{{*/
     }
 
     file_cursor++;
-    printf("%lld\n",value);
+    printf("i%llde\n",value);
     
     return 0;
 }/*}}}*/

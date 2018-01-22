@@ -1,0 +1,77 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Announce_list	parser.h	/^} Announce_list;$/;"	t	typeref:struct:_Announce_list
+BUFF_SIZE	net_client.c	21;"	d	file:
+CONNECT_BUF_SIZE	net_client.c	19;"	d	file:
+Computed	sha1.h	/^    int Computed;               \/* Is the digest computed?         *\/$/;"	m	struct:SHA1Context
+Corrupted	sha1.h	/^    int Corrupted;             \/* Is the message digest corrupted? *\/$/;"	m	struct:SHA1Context
+Files	parser.h	/^} Files;$/;"	t	typeref:struct:_Files
+Intermediate_Hash	sha1.h	/^    uint32_t Intermediate_Hash[SHA1HashSize\/4]; \/* Message Digest  *\/$/;"	m	struct:SHA1Context
+Length_High	sha1.h	/^    uint32_t Length_High;           \/* Message length in bits      *\/$/;"	m	struct:SHA1Context
+Length_Low	sha1.h	/^    uint32_t Length_Low;            \/* Message length in bits      *\/$/;"	m	struct:SHA1Context
+Message_Block	sha1.h	/^    uint8_t Message_Block[64];      \/* 512-bit message blocks      *\/$/;"	m	struct:SHA1Context
+Message_Block_Index	sha1.h	/^    int_least16_t Message_Block_Index;$/;"	m	struct:SHA1Context
+SEND_HTTP_MSG_LENGTH	net_client.c	20;"	d	file:
+SHA1CircularShift	sha1.c	36;"	d	file:
+SHA1Context	sha1.h	/^typedef struct SHA1Context$/;"	s
+SHA1Context	sha1.h	/^} SHA1Context;$/;"	t	typeref:struct:SHA1Context
+SHA1HashSize	sha1.h	40;"	d
+SHA1Input	sha1.c	/^int SHA1Input(SHA1Context    *context,$/;"	f
+SHA1PadMessage	sha1.c	/^void SHA1PadMessage(SHA1Context *context)$/;"	f
+SHA1ProcessMessageBlock	sha1.c	/^void SHA1ProcessMessageBlock(SHA1Context *context)$/;"	f
+SHA1Reset	sha1.c	/^int SHA1Reset(SHA1Context *context)$/;"	f
+SHA1Result	sha1.c	/^int SHA1Result( SHA1Context *context,$/;"	f
+_Announce_list	parser.h	/^typedef struct _Announce_list{$/;"	s
+_Files	parser.h	/^typedef struct _Files{$/;"	s
+_PARSER_H	parser.h	9;"	d
+_SHA1_H_	sha1.h	17;"	d
+_SHA_enum_	sha1.h	31;"	d
+__NET_UTILS__	simple_tracker.h	3;"	d
+add_an_announce	parser.c	/^int add_an_announce(char *url){$/;"	f
+annouce	parser.h	/^    char annouce[128];$/;"	m	struct:_Announce_list
+announce_list_head	parser.c	/^Announce_list *announce_list_head=NULL;$/;"	v
+close_socket	net_client.c	/^void close_socket(){\/*{{{*\/$/;"	f
+connect_tracker	net_client.c	/^int connect_tracker(){\/*{{{*\/$/;"	f
+create_request	simple_tracker.c	/^int create_request(char *request,int len,Announce_list *node,unsigned short port,long long down,long long up,long long left,int numwant){\/*{{{*\/$/;"	f
+file_length	parser.c	/^long long file_length=0;$/;"	v
+file_name	parser.c	/^char *file_name=NULL;$/;"	v
+files_head	parser.c	/^Files *files_head=NULL;\/\/mutifile will be a link.$/;"	v
+filesize	parser.c	/^long filesize;$/;"	v
+find_keyword	parser.c	/^int find_keyword(char *keyword,long *position){$/;"	f
+get_file_length	parser.c	/^int get_file_length(){$/;"	f
+get_file_name	parser.c	/^int get_file_name(){$/;"	f
+get_files_length_path	parser.c	/^int get_files_length_path(){$/;"	f
+get_info_hash	parser.c	/^int get_info_hash(){$/;"	f
+get_peer_id	parser.c	/^int get_peer_id(){$/;"	f
+get_piece_length	parser.c	/^int get_piece_length(){$/;"	f
+get_pieces	parser.c	/^int get_pieces(){$/;"	f
+get_tracker_name	simple_tracker.c	/^int get_tracker_name(Announce_list *node,char *name,int len){\/*{{{*\/$/;"	f
+get_tracker_port	simple_tracker.c	/^int get_tracker_port(Announce_list *node,unsigned short *port,int position){\/*{{{*\/$/;"	f
+get_tracker_response	net_client.c	/^void get_tracker_response(){\/*{{{*\/$/;"	f
+http_encode	simple_tracker.c	/^int http_encode(unsigned char *str,int strSize,char *result,int bufSize){ \/*{{{*\/$/;"	f
+info_hash	parser.c	/^unsigned char info_hash[20];$/;"	v
+is_muti_files	parser.c	/^int is_muti_files(){$/;"	f
+length	parser.h	/^    unsigned long long length;$/;"	m	struct:_Files
+main	net_client.c	/^int main(int argc,char *argv[]){\/*{{{*\/$/;"	f
+metafile_content	parser.c	/^unsigned char *metafile_content=NULL;$/;"	v
+muti_file	parser.c	/^int muti_file=0;\/\/mutifile count?$/;"	v
+next	parser.h	/^    struct _Announce_list *next;$/;"	m	struct:_Announce_list	typeref:struct:_Announce_list::_Announce_list
+next	parser.h	/^    struct _Files *next;$/;"	m	struct:_Files	typeref:struct:_Files::_Files
+path	parser.h	/^    char path[256];$/;"	m	struct:_Files
+peer_id	parser.c	/^unsigned char peer_id[20];$/;"	v
+piece	parser.c	/^char *piece=NULL;$/;"	v
+piece_length	parser.c	/^int piece_length=0;$/;"	v
+pieces_length	parser.c	/^int pieces_length=0;$/;"	v
+read_announce_list	parser.c	/^int read_announce_list(){$/;"	f
+read_metafile	parser.c	/^int read_metafile(char *metafile_name){$/;"	f
+release_memory_in_parse_metafile	parser.c	/^void release_memory_in_parse_metafile(){$/;"	f
+send_request	net_client.c	/^int send_request(){\/*{{{*\/$/;"	f
+shaInputTooLong	sha1.h	/^    shaInputTooLong,    \/* input data too long *\/$/;"	e	enum:__anon1
+shaNull	sha1.h	/^    shaNull,            \/* Null pointer parameter *\/$/;"	e	enum:__anon1
+shaStateError	sha1.h	/^    shaStateError       \/* called Input after Result *\/$/;"	e	enum:__anon1
+shaSuccess	sha1.h	/^    shaSuccess = 0,$/;"	e	enum:__anon1
+sock	net_client.c	/^int sock;$/;"	v
