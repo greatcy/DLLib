@@ -1,3 +1,4 @@
 */build
 *.sh.swp
 *.s.swp
+*a.out
